@@ -18,7 +18,7 @@ ElevationScroll.propTypes = {
   children: PropTypes.element.isRequired,
 };
 
-const Header = () => {
+const Header = (props) => {
   return (
     <Fragment>
       <ElevationScroll {...props}>
