@@ -1,6 +1,6 @@
 import useQuery from "react-query";
 export const useGetPhotosQuery = () => {
-  const { isLoading, error, isError, data, isFetching } = useQuery(
+  const { isLoading, error, isError, data, isFetching, isSuccess } = useQuery(
     "getPhotos",
     async () => {
       const response = await fetch(
@@ -19,5 +19,6 @@ export const useGetPhotosQuery = () => {
     isLoading,
     isError,
     isFetching,
+    isSuccess,
   };
 };
