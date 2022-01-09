@@ -30,6 +30,7 @@ const Header = (props) => {
           </Toolbar>
         </AppBar>
       </ElevationScroll>
+      <Toolbar />
     </Fragment>
   );
 };
