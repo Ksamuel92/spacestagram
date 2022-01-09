@@ -1,11 +1,11 @@
 import Layout from "./UI/Layout";
-import PhotoList from "./components/PhotoList";
+import CardGrid from "./components/CardGrid";
 import "./App.css";
 
 function App() {
   return (
     <Layout>
-      <PhotoList />
+      <CardGrid />
     </Layout>
   );
 }
