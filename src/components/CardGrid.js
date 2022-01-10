@@ -1,18 +1,7 @@
 import { Fragment } from "react";
-import {
-  Avatar,
-  Card,
-  CardMedia,
-  CardHeader,
-  CardContent,
-  CardActionArea,
-  IconButton,
-} from "@mui/material";
-import Hal from "../assets/download.jpeg";
-import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
-import randomPhotoFormatGenerator from "../helpers/randomPhotoFormatGenerator";
-import { makeStyles } from "@mui/styles";
+import PhotoCard from "./PhotoCard";
 import { useGetPhotosQuery } from "../services/api";
+import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles({
   root: {
@@ -21,15 +10,6 @@ const useStyles = makeStyles({
     alignItems: "center",
   },
 });
-
-function srcset(image, width, height, rows = 1, cols = 1) {
-  return {
-    src: `${image}?w=${width * cols}&h=${height * rows}&fit=crop&auto=format`,
-    srcSet: `${image}?w=${width * cols}&h=${
-      height * rows
-    }&fit=crop&auto=format&dpr=2 2x`,
-  };
-}
 
 const CardGrid = () => {
   const classes = useStyles();
@@ -40,43 +20,16 @@ const CardGrid = () => {
     isSuccess,
     isError,
   } = useGetPhotosQuery();
-  // const [isLikedPhoto, setIsLikedPhoto] = useState();
 
-  const photos = photoData?.map((photo) => {
-    const { rows, cols } = randomPhotoFormatGenerator(8, 8);
-    return (
-      <Card raised={true} sx={{ maxWidth: 700, marginTop: "10px" }}>
-        <CardHeader
-          avatar={<Avatar src={Hal} aria-label="avatar" />}
-          title={photo.title}
-          subheader={photo.date}
-          action={
-            <IconButton aria-label="like">
-              <FavoriteBorderIcon />
-            </IconButton>
-          }
-        />
-        <CardActionArea>
-          <CardMedia
-            component="img"
-            height="auto"
-            image={photo.url}
-            alt={photo.title}
-            key={photo.title}
-          />
-        </CardActionArea>
-        <CardContent>
-          <p>{photo.explanation}</p>
-        </CardContent>
-      </Card>
-    );
-  });
+  const photoCards = photoData?.map((photo) => (
+    <PhotoCard photo={photo}></PhotoCard>
+  ));
 
   return (
     <div className={classes.root}>
       {isLoading && <p>loading...</p>}
       {isError && <p>{error.message}</p>}
-      {isSuccess && photos}
+      {isSuccess && photoCards}
     </div>
   );
 };
