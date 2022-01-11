@@ -9,11 +9,21 @@ import {
   CardContent,
   CardActionArea,
   IconButton,
+  Typography,
 } from "@mui/material";
+import { makeStyles } from "@mui/styles";
+
+const useStyles = makeStyles({
+  hal: {
+    color: "black",
+    fontSize: "initial",
+  },
+});
 
 const PhotoCard = (props) => {
   const [isLikedPhoto, setIsLikedPhoto] = useState();
   const { photo } = props;
+  const classes = useStyles();
 
   return (
     <Card raised={true} sx={{ maxWidth: 700, marginTop: "10px" }}>
@@ -38,7 +48,9 @@ const PhotoCard = (props) => {
         />
       </CardActionArea>
       <CardContent>
-        <p>{photo.explanation}</p>
+        <Typography paragraph={true} variant="caption">
+          <span className={classes.hal}>Hal 9000</span> {photo.explanation}
+        </Typography>
       </CardContent>
     </Card>
   );
