@@ -18,12 +18,23 @@ import { makeStyles } from "@mui/styles";
 
 const useStyles = makeStyles({
   hal: {
-    color: "black",
+    color: "#EB2431",
     fontSize: "initial",
+    fontWeight: "bold",
   },
   hdImage: {
     maxWidth: "100%",
     height: "auto",
+  },
+  cardHeader: {
+    background: "#FCDEE0",
+    color: "#490D11",
+    "& .MuiCardHeader-subheader": {
+      color: "#490D11",
+    },
+  },
+  cardContent: {
+    backgroundColor: "#FFFFFF",
   },
 });
 
@@ -45,6 +56,7 @@ const PhotoCard = (props) => {
     <Fragment>
       <Card raised={true} sx={{ maxWidth: 700, marginTop: "10px" }}>
         <CardHeader
+          className={classes.cardHeader}
           avatar={<Avatar src={Hal} aria-label="avatar" />}
           title={photo.title}
           subheader={photo.date}
@@ -53,7 +65,7 @@ const PhotoCard = (props) => {
               {isLikedPhoto ? (
                 <FavoriteIcon htmlColor="red" />
               ) : (
-                <FavoriteBorderIcon />
+                <FavoriteBorderIcon htmlColor="white" />
               )}
             </IconButton>
           }
@@ -69,9 +81,9 @@ const PhotoCard = (props) => {
             key={photo.title}
           />
         </CardActionArea>
-        <CardContent>
+        <CardContent className={classes.cardContent}>
           <Typography paragraph={true} variant="caption">
-            <span className={classes.hal}>Hal 9000</span> {photo.explanation}
+            <span className={classes.hal}>HAL9000</span> {photo.explanation}
           </Typography>
         </CardContent>
       </Card>
