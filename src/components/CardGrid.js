@@ -1,4 +1,3 @@
-import { Fragment } from "react";
 import PhotoCard from "./PhotoCard";
 import LinearProgress from "@mui/material/LinearProgress";
 import CircularProgress from "@mui/material/CircularProgress";
@@ -22,7 +21,6 @@ const CardGrid = () => {
     data: photoData,
     error,
     isLoading,
-    isSuccess,
     isError,
     hasNextPage,
     fetchNextPage,
@@ -31,7 +29,7 @@ const CardGrid = () => {
   return (
     <div className={classes.root}>
       {isLoading ? (
-        <CircularProgress mt={20} sx={{ marginLeft: "50%" }} />
+        <CircularProgress />
       ) : isError ? (
         <p>{error.message}</p>
       ) : (
