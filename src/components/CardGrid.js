@@ -1,6 +1,8 @@
 import { Fragment } from "react";
 import PhotoCard from "./PhotoCard";
 import LinearProgress from "@mui/material/LinearProgress";
+import CircularProgress from "@mui/material/CircularProgress";
+
 import { useGetPhotosQuery } from "../services/api";
 import { makeStyles } from "@mui/styles";
 import InfiniteScroll from "react-infinite-scroller";
@@ -11,6 +13,7 @@ const useStyles = makeStyles({
     flexDirection: "column",
     alignItems: "center",
   },
+  cardContent: {},
 });
 
 const CardGrid = () => {
@@ -25,19 +28,17 @@ const CardGrid = () => {
     fetchNextPage,
   } = useGetPhotosQuery();
 
-  debugger;
-
   return (
     <div className={classes.root}>
       {isLoading ? (
-        <p>loading...</p>
+        <CircularProgress mt={20} sx={{ marginLeft: "50%" }} />
       ) : isError ? (
         <p>{error.message}</p>
       ) : (
         <InfiniteScroll
           hasMore={hasNextPage}
           loadMore={fetchNextPage}
-          loader={<LinearProgress />}
+          loader={<LinearProgress variant="query" key={0} />}
           threshold={500}
         >
           {photoData?.pages.map((page) =>
