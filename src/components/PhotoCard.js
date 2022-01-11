@@ -37,11 +37,11 @@ const PhotoCard = (props) => {
         title={photo.title}
         subheader={photo.date}
         action={
-          <IconButton aria-label="like">
+          <IconButton aria-label="like" onClick={handleClick}>
             {isLikedPhoto ? (
-              <FavoriteIcon htmlColor="red" onClick={handleClick} />
+              <FavoriteIcon htmlColor="red" />
             ) : (
-              <FavoriteBorderIcon onClick={handleClick} />
+              <FavoriteBorderIcon />
             )}
           </IconButton>
         }
