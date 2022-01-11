@@ -23,8 +23,8 @@ const Header = (props) => {
     <Fragment>
       <ElevationScroll {...props}>
         <AppBar>
-          <Toolbar>
-            <Typography variant="h6" component="div">
+          <Toolbar sx={{ backgroundColor: "#FFF5F5" }}>
+            <Typography variant="h6" color="#4F070C" component="div">
               Spacestagram
             </Typography>
           </Toolbar>
