@@ -5,14 +5,27 @@ import "typeface-roboto";
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 import { QueryClient, QueryClientProvider } from "react-query";
+import { createTheme, ThemeProvider } from "@mui/material/styles";
 import { ReactQueryDevtools } from "react-query/devtools";
 
+const theme = createTheme({
+  pallette: {
+    primary: {
+      main: "#000099",
+    },
+    secondary: {
+      main: "#4D0099",
+    },
+  },
+});
 const queryClient = new QueryClient();
 
 ReactDOM.render(
   <React.StrictMode>
     <QueryClientProvider client={queryClient}>
-      <App />
+      <ThemeProvider theme={theme}>
+        <App />
+      </ThemeProvider>
       <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   </React.StrictMode>,
