@@ -1,5 +1,6 @@
 import { Fragment, useState } from "react";
 import FavoriteBorderIcon from "@mui/icons-material/FavoriteBorder";
+import FavoriteIcon from "@mui/icons-material/Favorite";
 import Hal from "../assets/download.jpeg";
 import {
   Avatar,
@@ -21,9 +22,13 @@ const useStyles = makeStyles({
 });
 
 const PhotoCard = (props) => {
-  const [isLikedPhoto, setIsLikedPhoto] = useState();
+  const [isLikedPhoto, setIsLikedPhoto] = useState(false);
   const { photo } = props;
   const classes = useStyles();
+
+  const handleClick = () => {
+    setIsLikedPhoto((isLikedPhoto) => !isLikedPhoto);
+  };
 
   return (
     <Card raised={true} sx={{ maxWidth: 700, marginTop: "10px" }}>
@@ -33,7 +38,11 @@ const PhotoCard = (props) => {
         subheader={photo.date}
         action={
           <IconButton aria-label="like">
-            <FavoriteBorderIcon />
+            {isLikedPhoto ? (
+              <FavoriteIcon htmlColor="red" onClick={handleClick} />
+            ) : (
+              <FavoriteBorderIcon onClick={handleClick} />
+            )}
           </IconButton>
         }
       />
