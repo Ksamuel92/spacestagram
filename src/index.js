@@ -26,7 +26,6 @@ ReactDOM.render(
       <ThemeProvider theme={theme}>
         <App />
       </ThemeProvider>
-      <ReactQueryDevtools initialIsOpen={false} />
     </QueryClientProvider>
   </React.StrictMode>,
   document.getElementById("root")
